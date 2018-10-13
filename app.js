@@ -2,9 +2,11 @@ const express = require('express')
 const app = express() // Instantiating Express
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
-import Dream from '/models/dream.js'
+var Dream = require('./models/dream.js')
 
-mongoose.Promise = mongoose.connect("mongodb://localhost/dreamchaser");
+mongoose.connect("mongodb://localhost/dreamchaser", function () {
+    console.log('Connected to MongoDB')
+});
 
 // Main.handlebars all other templates inherit from
 app.engine('handlebars', exphbs({
@@ -23,10 +25,12 @@ app.get('/dreams', (req, res) => {
 });
 
 // Submission for new dream form
-app.get('/reviews/new', (req,res) => {
-    res.render('reviews-new', {})
+app.get('/dreams/new', (req,res) => {
+    res.render('dream-new', {})
 });
 
 app.listen(3000, () => {
     console.log('App listening on port 3000')
 })
+
+module.exports = mongoose;

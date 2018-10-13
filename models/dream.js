@@ -6,4 +6,4 @@ const Dream = mongoose.model('Dream', {
     category: String
 });
 
-export default Dream;
+module.exports = Dream;
