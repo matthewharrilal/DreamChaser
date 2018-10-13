@@ -34,6 +34,14 @@ app.get('/dreams/new', (req, res) => {
     res.render('dream-new', {})
 });
 
+app.get('dreams/:id', (req, res) => {
+    Dream.findById(req.params.id).then((dream) => {
+         res.render('reviews-show', {dream})
+    }).catch((err) => {
+        console.log(err.message)
+    })
+});
+
 app.post('/dreams', (req, res) => {
     Dream.create(req.body).then((dream) => {
         console.log(Object.entries(req.body))
