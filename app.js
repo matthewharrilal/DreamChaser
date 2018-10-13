@@ -6,8 +6,13 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'})); // Main Template => main.handlebars
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-    res.render('home', { msg: 'Handlebars are Cool!' });
+let dreams = [
+    {title: "When I was in Cambodia", msg: "It was a cold day"},
+    {title: "When I was young", msg: "It was a colder day."}
+]
+
+app.get('/dreams', (req, res) => {
+    res.render('dreams-index', {dreams});
 })
 
 app.listen(3000, () => {
