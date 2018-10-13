@@ -3,8 +3,12 @@ const app = express() // Instantiating Express
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var Dream = require('./models/dream.js')
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-mongoose.connect("mongodb://localhost/dreamchaser", function () {
+mongoose.connect("mongodb://localhost/dreamchaser", function() {
     console.log('Connected to MongoDB')
 });
 
@@ -15,7 +19,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.get('/dreams', (req, res) => {
-    Dream.find().then(reviews => {
+    Dream.find().then(dreams => {
+        console.log('These are all the dreams ' + dreams)
         res.render('dreams-index', {
             dreams
         })
@@ -25,8 +30,17 @@ app.get('/dreams', (req, res) => {
 });
 
 // Submission for new dream form
-app.get('/dreams/new', (req,res) => {
+app.get('/dreams/new', (req, res) => {
     res.render('dream-new', {})
+});
+
+app.post('/dreams', (req, res) => {
+    Dream.create(req.body).then((dream) => {
+        console.log(Object.entries(req.body))
+        res.redirect('/dreams')
+    }).catch((err) => {
+        console.log(err.message)
+    })
 });
 
 app.listen(3000, () => {
