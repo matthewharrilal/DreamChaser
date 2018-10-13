@@ -2,6 +2,8 @@ const express = require('express')
 const app = express() // Instantiating Express
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
+import Dream from '/models/dream.js'
+
 mongoose.Promise = mongoose.connect("mongodb://localhost/dreamchaser");
 
 // Main.handlebars all other templates inherit from
@@ -9,8 +11,12 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'})); // Main Template => m
 app.set('view engine', 'handlebars');
 
 app.get('/dreams', (req, res) => {
-    res.send('List all dreams here');
-})
+    Dream.find().then(reviews => {
+        res.render('dreams-index', {dreams})
+    }).catch(err => {
+        console.log(err)
+    })
+});
 
 app.listen(3000, () => {
     console.log('App listening on port 3000')

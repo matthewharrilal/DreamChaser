@@ -5,3 +5,5 @@ const Dream = mongoose.model('Dream', {
     msg: String,
     category: String
 });
+
+export default Dream;
