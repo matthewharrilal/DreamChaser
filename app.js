@@ -1,10 +1,13 @@
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express() // Instantiating Express
+app.use(methodOverride('_method'))
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var Dream = require('./models/dream');
 var ObjectId = require('mongodb').ObjectId
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -46,27 +49,44 @@ app.post('/dreams', (req, res) => {
 
 app.get('/dreams/:id', (req, res) => {
     // console.log('This is the id ' + req.params.id)
-    Dream.findById({_id: ObjectId(req.params.id)}).then((dream) => {
+    Dream.findById({
+        _id: ObjectId(req.params.id)
+    }).then((dream) => {
         console.log('This is the dream ' + dream)
-         res.render('dream-show', {dream: dream})
+        res.render('dream-show', {
+            dream: dream
+        })
     }).catch((err) => {
         console.log(err.message)
     })
     // res.send('Hello world')
 });
+
+app.put('/dreams/:id', (req, res) => {
+  Dream.findByIdAndUpdate(req.params.id, req.body)
+    .then(dream => {
+      res.redirect("/dreams/${dream._id}")
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+})
 
 
 app.get('/dreams/:id/edit', (req, res) => {
     console.log('This is the id ' + req.params.id)
-    Dream.findById({_id: ObjectId(req.params.id)}).then((dream) => {
+    Dream.findById({
+        _id: ObjectId(req.params.id)
+    }).then((dream) => {
         console.log('This is the dream ' + dream)
-         res.render('dreams-edit', {dream: dream})
+        res.render('dreams-edit', {
+            dream: dream
+        })
     }).catch((err) => {
         console.log(err.message)
     })
     // res.send('Hello world')
 });
-
 
 
 app.listen(3000, () => {
