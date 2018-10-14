@@ -1,21 +1,5 @@
-
 <form method="POST" action="/dreams">
-  <fieldset>
-    <legend>New Dream</legend>
-    <!-- TITLE -->
-    <p>
-      <label for="title">Enter Dream Title</label><br>
-      <input type="text" name="title" />
-    </p>
-    <p>
-      <label for="msg">Enter Dream Message</label><br>
-      <input type="text" name="msg" />
-    </p>
-    <p>
-      <label for="category">Enter Dream Category</label><br>
-      <input type="text" name="category" />
-    </p>
-  </fieldset>
+  {{> dream-form}}
 
   <!-- BUTTON -->
   <p>

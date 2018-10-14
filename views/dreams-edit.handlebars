@@ -1,26 +1,7 @@
 <form method="POST" action="/dreams/{{dream._id}}?_method=PUT">
-  <fieldset>
-    <legend>Edit Review</legend>
-    <!-- TITLE -->
-    <p>
-      <label for="title">Dream Title</label><br>
-      <input id="dreamTitle" type="text" name="title" value="{{dream.title}}"/>
-    </p>
-
-    <!-- MOVIE TITLE -->
-    <p>
-      <label for="msg">Dream Message</label><br>
-      <input id="dreamMsg" type="text" name="msg" value="{{dream.msg}}" />
-    </p>
-
-    <!-- DESCRIPTION -->
-    <p>
-      <label for="category">Dream Category</label><br>
-      <textarea id="dreamCategory" name="category" rows="4" value="{{dream.category}}" /></textarea>
-    </p>
-  </fieldset>
+  {{> dream-form}}
   <!-- BUTTON -->
   <p>
-    <button type="submit">Save Edited Dream</button>
+    <button type="submit">Save Dream</button>
   </p>
 </form>
