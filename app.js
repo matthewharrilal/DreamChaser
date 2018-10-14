@@ -5,7 +5,6 @@ app.use(methodOverride('_method'))
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var Dream = require('./controllers/dream.js');
-var ObjectId = require('mongodb').ObjectId
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -19,7 +18,9 @@ mongoose.connect("mongodb://localhost/dreamchaser", function() {
 // Main.handlebars all other templates inherit from
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
-})); // Main Template => main.handlebars
+}));
+
+// Main Template => main.handlebars
 app.set('view engine', 'handlebars');
 //
 
@@ -30,4 +31,4 @@ app.listen(3000, () => {
     console.log('App listening on port 3000')
 })
 
-module.exports = mongoose;
+module.exports = app;

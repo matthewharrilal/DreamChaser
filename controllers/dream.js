@@ -70,4 +70,13 @@ module.exports = function(app) {
         // res.send('Hello world')
     });
 
+    app.delete('/dreams/:id', (req, res) => {
+        console.log("DELETE dream")
+        Dream.findByIdAndRemove(req.params.id).then((dream) => {
+            res.redirect('/dreams');
+        }).catch((err) => {
+            console.log(err.message);
+        })
+    })
+
 }

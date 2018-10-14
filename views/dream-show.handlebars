@@ -3,3 +3,6 @@
 <h2>{{dream.msg}}</h2>
 <p>{{dream.category}}</p>
 <p><a href="/dreams/{{dream._id}}/edit">Edit</a></p>
+<p><form method="POST" action="/dreams/{{dream._id}}?_method=DELETE">
+    <button type="submit">Delete Dream</button>
+</form></p>
