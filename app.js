@@ -48,11 +48,11 @@ app.post('/dreams', (req, res) => {
 });
 
 app.get('/dreams/:id', (req, res) => {
-    // console.log('This is the id ' + req.params.id)
+    console.log('This is the id ' + req.params.id)
     Dream.findById({
         _id: ObjectId(req.params.id)
     }).then((dream) => {
-        console.log('This is the dream ' + dream)
+        console.log('This is the fetched dream ' + dream)
         res.render('dream-show', {
             dream: dream
         })
@@ -63,9 +63,10 @@ app.get('/dreams/:id', (req, res) => {
 });
 
 app.put('/dreams/:id', (req, res) => {
-  Dream.findByIdAndUpdate(req.params.id, req.body)
+  Dream.findOneAndUpdate(req.params.id, req.body)
     .then(dream => {
-      res.redirect("/dreams/${dream._id}")
+      console.log('DREAM =>>>> ' + dream)
+      res.redirect(`/dreams/${dream._id}`)
     })
     .catch(err => {
       console.log(err.message)
@@ -78,7 +79,7 @@ app.get('/dreams/:id/edit', (req, res) => {
     Dream.findById({
         _id: ObjectId(req.params.id)
     }).then((dream) => {
-        console.log('This is the dream ' + dream)
+        console.log('This is the edited dream ' + dream)
         res.render('dreams-edit', {
             dream: dream
         })
