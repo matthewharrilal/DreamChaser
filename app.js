@@ -2,7 +2,8 @@ const express = require('express')
 const app = express() // Instantiating Express
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
-var Dream = require('./models/dream.js')
+var Dream = require('./models/dream');
+var ObjectId = require('mongodb').ObjectId
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
@@ -17,10 +18,10 @@ app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 })); // Main Template => main.handlebars
 app.set('view engine', 'handlebars');
-
+//
 app.get('/dreams', (req, res) => {
     Dream.find().then(dreams => {
-        console.log('These are all the dreams ' + dreams)
+        // console.log('These are all the dreams ' + dreams)
         res.render('dreams-index', {
             dreams
         })
@@ -28,18 +29,10 @@ app.get('/dreams', (req, res) => {
         console.log(err)
     })
 });
-
+//
 // Submission for new dream form
 app.get('/dreams/new', (req, res) => {
     res.render('dream-new', {})
-});
-
-app.get('dreams/:id', (req, res) => {
-    Dream.findById(req.params.id).then((dream) => {
-         res.render('reviews-show', {dream})
-    }).catch((err) => {
-        console.log(err.message)
-    })
 });
 
 app.post('/dreams', (req, res) => {
@@ -50,6 +43,19 @@ app.post('/dreams', (req, res) => {
         console.log(err.message)
     })
 });
+
+app.get('/dreams/:id', (req, res) => {
+    console.log('This is the id ' + req.params.id)
+    Dream.findById({_id: ObjectId(req.params.id)}).then((dream) => {
+        console.log('This is the dream ' + dream)
+         res.render('dream-show', {dream: dream})
+    }).catch((err) => {
+        console.log(err.message)
+    })
+    // res.send('Hello world')
+});
+
+
 
 app.listen(3000, () => {
     console.log('App listening on port 3000')
