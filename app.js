@@ -29,7 +29,7 @@ app.get('/dreams', (req, res) => {
         console.log(err)
     })
 });
-//
+
 // Submission for new dream form
 app.get('/dreams/new', (req, res) => {
     res.render('dream-new', {})
@@ -45,10 +45,22 @@ app.post('/dreams', (req, res) => {
 });
 
 app.get('/dreams/:id', (req, res) => {
-    console.log('This is the id ' + req.params.id)
+    // console.log('This is the id ' + req.params.id)
     Dream.findById({_id: ObjectId(req.params.id)}).then((dream) => {
         console.log('This is the dream ' + dream)
          res.render('dream-show', {dream: dream})
+    }).catch((err) => {
+        console.log(err.message)
+    })
+    // res.send('Hello world')
+});
+
+
+app.get('/dreams/:id/edit', (req, res) => {
+    console.log('This is the id ' + req.params.id)
+    Dream.findById({_id: ObjectId(req.params.id)}).then((dream) => {
+        console.log('This is the dream ' + dream)
+         res.render('dreams-edit', {dream: dream})
     }).catch((err) => {
         console.log(err.message)
     })
