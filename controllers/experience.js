@@ -5,7 +5,6 @@ var ObjectId = require('mongodb').ObjectId
 module.exports = function(app) {
 
     app.get('/dreams/:id/experiences', (req, res) => {
-
         Experience.find({dreamId: req.params.id}).then(experiences => {
             console.log('These are all the experiences ' + experiences)
             res.render('experiences-index', {
