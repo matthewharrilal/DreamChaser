@@ -6,10 +6,10 @@ module.exports = function(app) {
     //     '''Retrieves a collection of experiences'''
     // });
 
-    app.get("/helloWorld", (req,res) => {
-        res.send('Hello World')
-        // const dreamId = req.params.id
-        // res.render('experience-new', {dreamId})
+    app.get("/dreams/:id/experience/new", (req,res) => {
+        // res.send('Hello World')
+        const dreamId = req.params.id
+        res.render('experience-new', {dreamId})
     });
 
 
