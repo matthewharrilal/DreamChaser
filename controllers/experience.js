@@ -5,11 +5,10 @@ module.exports = function(app) {
 
     app.get('/dreams/:id/experiences', (req, res) => {
         Experience.find().then(experiences => {
-            // console.log('These are all the dreams ' + dreams)
-            // res.render('experiences-index', {
-            //     experiences
-            // })
-            res.send('Hello World')
+            console.log('These are all the experiences ' + experiences)
+            res.render('experiences-index', {
+                experiences
+            })
         }).catch(err => {
             console.log(err)
         })
@@ -19,7 +18,7 @@ module.exports = function(app) {
         console.log('Initiating posting an experience')
         Experience.create(req.body).then((experience) => {
             console.log(Object.entries(req.body))
-            res.send('Succesful')
+            res.redirect(`/dreams/${req.params.id}/experiences`)
         }).catch((err) => {
             console.log(err.message)
         })
