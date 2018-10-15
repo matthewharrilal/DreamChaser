@@ -19,19 +19,18 @@ module.exports = function(app) {
     });
 
     app.get('/dreams/:dreamId/experiences/:id', (req, res) => {
-        console.log(req.params.id)
-        Experience.find({
-                _id: req.params.id
-            }).then((experience) => {
-                console.log('The EXPERIENCE ' + experience)
-                res.render('experience-show', {
-                    experience
-                })
+        console.log('This is the id ' + req.params.id)
+        Experience.findById({
+            _id: ObjectId(req.params.id)
+        }).then((experience) => {
+            console.log('This is the fetched experience ' + experience)
+            res.render('experience-show', {
+                experience: experience
             })
-            .catch((err) => {
-                console.log(err.message)
-            })
-
+        }).catch((err) => {
+            console.log(err.message)
+        })
+        // res.send('Hello world')
     });
 
     app.post("/dreams/:id/experience", (req, res) => {

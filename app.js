@@ -25,8 +25,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 //
 
-Dream(app)
-Experience(app)
+Dream(app);
+Experience(app);
 
 
 app.listen(3000, () => {
