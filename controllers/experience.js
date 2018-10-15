@@ -25,12 +25,29 @@ module.exports = function(app) {
         }).then((experience) => {
             console.log('This is the fetched experience ' + experience)
             res.render('experience-show', {
-                experience: experience
+                experience: experience,
+                dreamId: req.params.dreamId
             })
         }).catch((err) => {
             console.log(err.message)
         })
         // res.send('Hello world')
+    });
+
+    app.get('/dreams/:dreamId/experiences/:id/edit', (req, res) => {
+        // res.send('Hello world')
+        console.log('This is the id ' + req.params.id)
+        Experience.findById({
+            _id: ObjectId(req.params.id)
+        }).then((experience) => {
+            console.log('This is the edited experience ' + experience)
+            res.render('experience-edit', {
+                experience,
+                dreamId: req.params.dreamId
+            })
+        }).catch((err) => {
+            console.log(err.message)
+        })
     });
 
     app.post("/dreams/:id/experience", (req, res) => {
@@ -45,7 +62,18 @@ module.exports = function(app) {
         })
     });
 
-    app.put
+    app.put('/dreams/:dreamId/experiences/:id', (req, res) => {
+        console.log('This is the experience that the user want to update ' + req.params.id)
+        Experience.findByIdAndUpdate(req.params.id, req.body)
+            .then(experience => {
+                console.log('Experience =>>>> ' + experience)
+                res.redirect(`/dreams/${req.params.dreamId}/experiences`)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    })
+
 
     app.get("/dreams/:id/experience/new", (req, res) => {
         // res.send('Hello World')
