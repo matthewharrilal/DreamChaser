@@ -17,6 +17,7 @@ module.exports = function(app) {
     });
 
     app.post("/dreams/:id/experience", (req, res) => {
+        // res.send('Hello World')
         console.log('Initiating posting an experience')
         Experience.create(req.body).then((experience) => {
             console.log(Object.entries(req.body))
