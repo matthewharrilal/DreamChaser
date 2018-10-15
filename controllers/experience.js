@@ -9,29 +9,24 @@ module.exports = function(app) {
         Experience.find({
             dreamId: req.params.id
         }).then(experiences => {
-            console.log('These are all the experiences ' + experiences)
             res.render('experiences-index', {
                 experiences,
                 dreamId
             })
-        }).catch(err => {
+        }).catch((err) => {
             console.log(err)
         })
     });
 
     app.get('/dreams/:dreamId/experiences/:id', (req, res) => {
-        const dreamId = req.params.dreamId
+        console.log(req.params.id)
         Experience.find({
-                dreamId
-            }).then((experiences) => {
-                experiences.find(ObjectId(req.params.id)).then((experience) => {
-                        res.render("experience-show", {
-                            experiences
-                        })
-                    })
-                    .catch((err) => {
-                        console.log(err.message)
-                    })
+                _id: req.params.id
+            }).then((experience) => {
+                console.log('The EXPERIENCE ' + experience)
+                res.render('experience-show', {
+                    experience
+                })
             })
             .catch((err) => {
                 console.log(err.message)
