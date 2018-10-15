@@ -78,6 +78,6 @@ module.exports = function(app) {
         }).catch((err) => {
             console.log(err.message);
         })
-    })
+    });
 
 }

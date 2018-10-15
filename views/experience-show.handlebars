@@ -2,5 +2,5 @@
 <h2>{{experience.description}}</h2>
 <p>{{experience.quantityOfDreams}}</p>
 <p><a href="/dreams/{{this.dreamId}}/experiences/{{experience.id}}/edit">Edit</a></p>
-<p><form method="POST" action="/dreams/{{dream._id}}/experiences/:id?_method=DELETE">
+<p><form method="POST" action="/dreams/{{this.dreamId}}/experiences/{{experience.id}}?_method=DELETE">
     <button type="submit">Delete Experience</button>

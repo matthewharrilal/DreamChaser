@@ -83,5 +83,13 @@ module.exports = function(app) {
         })
     });
 
+    app.delete('/dreams/:dreamId/experiences/:id', (req, res) => {
+        console.log("DELETE experience")
+        Experience.findByIdAndRemove(req.params.id).then((experience) => {
+            res.redirect(`/dreams/${req.params.dreamId}/experiences`);
+        }).catch((err) => {
+            console.log(err.message);
+        })
+    });
 
 }
