@@ -44,10 +44,11 @@ module.exports = function(app) {
     });
 
     app.put('/dreams/:id', (req, res) => {
-        Dream.findOneAndUpdate(req.params.id, req.body)
+        console.log('This is the dream that the user want to update ' + req.params.id)
+        Dream.findByIdAndUpdate(req.params.id, req.body)
             .then(dream => {
                 console.log('DREAM =>>>> ' + dream)
-                res.redirect(`/dreams/${dream._id}`)
+                res.redirect("/dreams")
             })
             .catch(err => {
                 console.log(err.message)

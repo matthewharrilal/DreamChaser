@@ -6,5 +6,11 @@ module.exports = function(app) {
         '''Retrieves a collection of experiences'''
     });
 
-    
+    app.get("/dreams/:id/experiences/new", (req,res) => {
+        '''Retrieves form for adding a new experience to a dream'''
+        const dreamId = req.params.id
+        res.render('experience-new', {dreamId})
+    });
+
+
 }
