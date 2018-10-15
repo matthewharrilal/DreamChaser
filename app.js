@@ -5,6 +5,7 @@ app.use(methodOverride('_method'))
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var Dream = require('./controllers/dream.js');
+var Experience = require('./controllers/experience.js')
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -25,6 +26,7 @@ app.set('view engine', 'handlebars');
 //
 
 Dream(app)
+Experience(app)
 
 
 app.listen(3000, () => {

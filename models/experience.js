@@ -4,7 +4,7 @@ const ExperienceSchema = mongoose.Schema({
     mainEmotion: String,
     description: String,
     quantityOfDreams: Number,
-    dreamId: {type: Schema.Types.ObjectId, ref: "Dream"}
+    dreamId: {type: mongoose.Schema.Types.ObjectId, ref: "Dream"}
 });
 
 var Experience = mongoose.model('Experience', ExperienceSchema)
