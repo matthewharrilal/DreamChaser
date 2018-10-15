@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Dream = require("./dream.js")
 
 const ExperienceSchema = mongoose.Schema({
     mainEmotion: String,

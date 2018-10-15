@@ -1,9 +1,11 @@
 const Experience = require('../models/experience')
+const Dream = require('../models/dream.js')
 var ObjectId = require('mongodb').ObjectId
 
 module.exports = function(app) {
 
     app.get('/dreams/:id/experiences', (req, res) => {
+
         Experience.find().then(experiences => {
             console.log('These are all the experiences ' + experiences)
             res.render('experiences-index', {
@@ -28,7 +30,7 @@ module.exports = function(app) {
         // res.send('Hello World')
         const dreamId = req.params.id
         res.render('experience-new', {
-            dreamId
+            dreamId: req.params.id
         })
     });
 
