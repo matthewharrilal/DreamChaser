@@ -13,22 +13,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var options = {
-  server: {
-    socketOptions: {
-      keepAlive: 300000, connectTimeoutMS: 30000
-    }
-  },
-  replset: {
-    socketOptions: {
-      keepAlive: 300000,
-      connectTimeoutMS : 30000
-    }
-  }
-};
 
 if(process.env.MONGOLAB_URI) {
-  mongoose.connect(process.env.MONGOLAB_URI, options);
+  mongoose.connect(process.env.MONGOLAB_URI);
   console.log('Connected to MongoDB on this uri ' + process.env.MONGOLAB_URI)
 } else {
 
