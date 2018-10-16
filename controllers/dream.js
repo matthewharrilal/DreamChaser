@@ -21,6 +21,7 @@ module.exports = function(app) {
     });
 
     app.post('/dreams', (req, res) => {
+        console.log("QQQQQQQQQQ =>>>>>>>> " + req.body)
         Dream.create(req.body).then((dream) => {
             console.log(Object.entries(req.body))
             res.redirect('/dreams')
