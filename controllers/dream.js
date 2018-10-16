@@ -3,15 +3,16 @@ var ObjectId = require('mongodb').ObjectId
 
 
 module.exports = function(app) {
-    app.get('/dreams', (req, res) => {
-        Dream.find().then(dreams => {
-            // console.log('These are all the dreams ' + dreams)
-            res.render('dreams-index', {
-                dreams
-            })
-        }).catch(err => {
-            console.log(err)
-        })
+    res.send('Hello world')
+    // app.get('/dreams', (req, res) => {
+    //     Dream.find().then(dreams => {
+    //         // console.log('These are all the dreams ' + dreams)
+    //         res.render('dreams-index', {
+    //             dreams
+    //         })
+    //     }).catch(err => {
+    //         console.log(err)
+    //     })
     });
 
     // Submission for new dream form
