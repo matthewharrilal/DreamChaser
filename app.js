@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Dream = require('./controllers/dream.js');
 var Experience = require('./controllers/experience.js')
 const bodyParser = require('body-parser');
+require('dotenv').config()
 
 app.use(bodyParser.urlencoded({
     extended: true

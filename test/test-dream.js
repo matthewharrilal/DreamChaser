@@ -15,7 +15,7 @@ const sampleDream = {
 }
 
 describe('Dreams', () => {
-it('should index all dreams on / GET', (done) => {
+it('should index all dreams on /dreams GET', (done) => {
     chai.request(app)
         .get('/dreams')
         .end((err, res) => {
