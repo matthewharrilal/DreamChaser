@@ -12,7 +12,7 @@ module.exports = function(app) {
         }).catch(err => {
             console.log(err)
         })
-     });
+    });
 
     // Submission for new dream form
     app.get('/dreams/new', (req, res) => {
