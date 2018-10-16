@@ -6,15 +6,13 @@ module.exports = function(app) {
     app.get('/dreams', (req, res) => {
         Dream.find().then(dreams => {
             console.log('These are all the dreams ' + req.body)
-            // res.render('dreams-index', {
-            //     dreams
-            // })
-            res.send(dreams);
+            res.render('dreams-index', {
+                dreams
+            })
         }).catch(err => {
             console.log(err)
         })
-        // res.send('Hello World')
-    });
+     });
 
     // Submission for new dream form
     app.get('/dreams/new', (req, res) => {
