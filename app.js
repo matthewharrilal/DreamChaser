@@ -13,9 +13,29 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/dreamchaser" , function() {
-    console.log('Connected to MongoDB')
-});
+var options = {
+  server: {
+    socketOptions: {
+      keepAlive: 300000, connectTimeoutMS: 30000
+    }
+  },
+  replset: {
+    socketOptions: {
+      keepAlive: 300000,
+      connectTimeoutMS : 30000
+    }
+  }
+};
+
+if(process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI, options);
+  console.log('Connected to MongoDB')
+} else {
+
+  // Connect to local database
+  mongoose.connect("mongodb://localhost/dreamchaser");
+}
+
 
 // Main.handlebars all other templates inherit from
 app.engine('handlebars', exphbs({
