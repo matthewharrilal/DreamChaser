@@ -5,11 +5,11 @@ var ObjectId = require('mongodb').ObjectId
 module.exports = function(app) {
     app.get('/dreams', (req, res) => {
         Dream.find().then(dreams => {
-            // console.log('These are all the dreams ' + dreams)
-            // res.render('dreams-index', {
-            //     dreams
-            // })
-            res.send(dreams);
+            console.log('These are all the dreams ' + req.body)
+            res.render('dreams-index', {
+                dreams
+            })
+            // res.send(dreams);
         }).catch(err => {
             console.log(err)
         })
@@ -22,9 +22,9 @@ module.exports = function(app) {
     });
 
     app.post('/dreams', (req, res) => {
-        console.log("QQQQQQQQQQ =>>>>>>>> " + req.body)
+        console.log("QQQQQQQQQQ =>>>>>>>> " + req.body.title)
         Dream.create(req.body).then((dream) => {
-            console.log(Object.entries(req.body))
+            console.log("======>>>>>> " + dream)
             res.redirect('/dreams')
         }).catch((err) => {
             console.log(err.message)
