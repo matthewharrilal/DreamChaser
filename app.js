@@ -33,6 +33,7 @@ if(process.env.MONGODB_URI) {
 } else {
 
   // Connect to local database
+  console.log("WORLD ENDER DESTROYER")
   mongoose.connect("mongodb://localhost/dreamchaser");
 }
 
