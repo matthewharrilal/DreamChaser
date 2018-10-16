@@ -29,9 +29,9 @@ app.set('view engine', 'handlebars');
 Dream(app);
 Experience(app);
 
-var server_port = 3000 || process.env.PORT || 80;
+var server_port = process.env.PORT || 3000;
 app.listen(server_port, () => {
-    console.log('App listening on port 3000')
+    console.log(`App listening on port ${server_port}`)
 })
 
 module.exports = app;
