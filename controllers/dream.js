@@ -6,9 +6,10 @@ module.exports = function(app) {
     app.get('/dreams', (req, res) => {
         Dream.find().then(dreams => {
             // console.log('These are all the dreams ' + dreams)
-            res.render('dreams-index', {
-                dreams
-            })
+            // res.render('dreams-index', {
+            //     dreams
+            // })
+            res.send(dreams);
         }).catch(err => {
             console.log(err)
         })
