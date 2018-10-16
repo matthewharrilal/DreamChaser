@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-mongoose.connect(process.env.MONGOLAB_URI , function() {
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/dreamchaser" , function() {
     console.log('Connected to MongoDB')
 });
 
