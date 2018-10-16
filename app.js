@@ -29,7 +29,7 @@ var options = {
 
 if(process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI, options);
-  console.log('Connected to MongoDB')
+  console.log('Connected to MongoDB on this uri ' + process.env.MONGODB_URI)
 } else {
 
   // Connect to local database
