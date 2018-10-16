@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-mongoose.connect(`mongodb://${process.env.USER}:${process.env.PASS}@ds035498.mlab.com:35498/testchatbot`, function() {
+mongoose.connect(process.env.MONGOLAB_URI, function() {
     console.log('Connected to MongoDB')
 });
 
